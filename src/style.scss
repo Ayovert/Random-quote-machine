@@ -1,0 +1,49 @@
+$page-color: #16a085;
+
+h1,
+p {
+  font-family: Lato;
+}
+
+body {
+}
+
+#root {
+}
+
+#quote-box {
+  background-color: white;
+  padding: 30px;
+}
+
+#text,
+#author {
+}
+
+#text {
+  text-align: center;
+}
+
+#author {
+  text-align: right;
+}
+
+.newQuote-button {
+  border: none;
+  border-radius: 5px;
+  float: right;
+}
+
+.twitter-button,
+.tumblr-button {
+  border-radius: 5px;
+  width: 20px;
+}
+.newQuote-button,
+.twitter-button,
+.tumblr-button {
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
