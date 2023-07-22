@@ -1,16 +1,9 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
 import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTwitter,
-  faTumblr
-} from '@fortawesome/free-brands-svg-icons';
-import {colors, api_url} from './data'
+import { faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons';
+import { colors, api_url } from './data';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
-
-
-
 
 export default class RandomQuote extends React.Component<
   {},
@@ -30,25 +23,27 @@ export default class RandomQuote extends React.Component<
     this.getApi = this.getApi.bind(this);
     this.getNewQuote = this.getNewQuote.bind(this);
   }
-  async getApi(url) {
+  async getApi() {
     // Storing response
 
-    const response = await fetch(url);
+    await fetch(api_url)
+      .then((response) => response.json())
+      .then((data) => {
+        {
+          if (data !== null && data.quotes.length > 0) {
+            this.setState({
+              quotes: [...data.quotes],
+            });
+          }
+        }
+      })
+      .then(() => {
+        if (this.state.quotes.length > 0) {
+          this.getNewQuote();
+        }
+      });
 
     // Storing data in form of JSON
-    let data = await response.json();
-
-    if (data !== null && data.quotes.length > 0) {
-      this.setState({
-        quotes: [...data.quotes],
-      });
-    }
-
-  
-
-    if (this.state.quotes.length > 0) {
-      this.getNewQuote();
-    }
   }
 
   getNewQuote() {
@@ -62,18 +57,19 @@ export default class RandomQuote extends React.Component<
       color: color,
     });
   }
-  //
 
   componentDidMount() {
     // Defining async function
     if (this.state.quotes.length < 1) {
-      this.getApi(api_url);
+      //this kept return empty
+      this.getApi();
+    } else {
+      this.getNewQuote();
     }
   }
 
   render() {
-    const { quotes, quote, author, color } = this.state;
-
+    const { quote, author, color } = this.state;
 
     const el: any = document.getElementsByTagName('body')[0];
 
@@ -81,33 +77,34 @@ export default class RandomQuote extends React.Component<
     el.style.color = color;
 
     return (
-      <div id="wrapper" >
+      <div id="wrapper">
         <div id="quote-box">
           {quote && author && (
             <>
-              <p id="text"><FontAwesomeIcon icon={faQuoteLeft} /> {" "}
-              {quote}</p>
+              <p id="text">
+                <FontAwesomeIcon icon={faQuoteLeft} /> {quote}
+              </p>
               <p id="author">- {author}</p>
             </>
           )}
-
           <div id="buttons">
-
-          <a
+            <a
               className="button"
               href="https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22Fall%20seven%20times%20and%20stand%20up%20eight.%22%20Japanese%20Proverb"
               title="Post this quote on twitter!"
+              target="_top"
             >
-            <FontAwesomeIcon
-              icon={faTwitter}
-              className="twitter-button"
-              style={{ backgroundColor: color ?? colors[0] }}
-            />
+              <FontAwesomeIcon
+                icon={faTwitter}
+                className="twitter-button"
+                style={{ backgroundColor: color ?? colors[0] }}
+              />
             </a>
             <a
               className="button"
               href="https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=Japanese%20Proverb&content=Fall%20seven%20times%20and%20stand%20up%20eight.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button"
               title="Post this quote on tumblr!"
+              target="_top"
             >
               <FontAwesomeIcon
                 icon={faTumblr}

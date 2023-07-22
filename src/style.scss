@@ -1,63 +1,50 @@
-$page-color: #16a085;
-
 body {
   font-family: 'Raleway', sans-serif;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-#root {
-}
+  #quote-box {
+    border-radius: 3px;
+    position: relative;
+    width: 450px;
+    padding: 40px 50px;
+    display: table;
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 1.4em;
+    #text {
+      text-align: center;
+    }
 
-#quote-box {
-  border-radius: 3px;
-  position: relative;
-  width: 450px;
-  padding: 40px 50px;
-  display: table;
-  background-color: #fff;
-}
+    #author {
+      text-align: right;
+      padding-top: 10px;
+      font-weight: 300;
+      font-size: 0.7em;
+    }
 
-#quote-box, #text{
-  font-weight: 500;
-  font-size: 1.4em;
-}
+    .newQuote-button {
+      border: none;
+      float: right;
+      font-size: 0.75em;
+    }
 
-
-#text {
-  text-align: center;
-}
-
-#author {
-  text-align: right;
-  padding-top: 10px;
-  font-weight: 300;
-  font-size: 0.7em;
-}
-
-.newQuote-button {
-  border: none;
-  float: right;
-  font-size: 0.75em;
-}
-
-.twitter-button,
-.tumblr-button {
-  
-  width: 20px;
-  height: 20px;
-  font-size: 0.65em;
-  
-}
-.newQuote-button,
-.twitter-button,
-.tumblr-button {
-  border-radius: 5px;
-  color: white;
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
- 
+    .twitter-button,
+    .tumblr-button {
+      width: 20px;
+      height: 20px;
+      font-size: 0.65em;
+      margin: 5px;
+    }
+    .newQuote-button,
+    .twitter-button,
+    .tumblr-button {
+      border-radius: 5px;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
 }
