@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { colors, api_url } from './data';
-import ReactFCCtest from 'react-fcctest';
 import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons';
 
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
-
 
 export default class RandomQuote extends React.Component<
   {},
@@ -81,7 +79,6 @@ export default class RandomQuote extends React.Component<
 
     return (
       <div id="wrapper">
-        <ReactFCCtest />
         <div id="quote-box">
           {quote && author && (
             <>
