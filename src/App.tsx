@@ -4,27 +4,13 @@ import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTwitter,
-  faFontAwesome,
-  faTumblr,
+  faTumblr
 } from '@fortawesome/free-brands-svg-icons';
+import {colors, api_url} from './data'
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
-const api_url =
-  'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json';
 
-const colors = [
-  '#16a085',
-  '#27ae60',
-  '#2c3e50',
-  '#f39c12',
-  '#e74c3c',
-  '#9b59b6',
-  '#FB6964',
-  '#342224',
-  '#472E32',
-  '#BDBB99',
-  '#77B1A9',
-  '#73A857',
-];
+
 
 export default class RandomQuote extends React.Component<
   {},
@@ -51,15 +37,14 @@ export default class RandomQuote extends React.Component<
 
     // Storing data in form of JSON
     let data = await response.json();
-    console.log(data, data.quotes);
-    //console.log(data.quotes[0]);
+
     if (data !== null && data.quotes.length > 0) {
       this.setState({
         quotes: [...data.quotes],
       });
     }
 
-    console.log(this.state.quotes, 'x');
+  
 
     if (this.state.quotes.length > 0) {
       this.getNewQuote();
@@ -89,34 +74,48 @@ export default class RandomQuote extends React.Component<
   render() {
     const { quotes, quote, author, color } = this.state;
 
-    // const index = Math.floor(Math.random() *103);
-    console.log(color);
 
     const el: any = document.getElementsByTagName('body')[0];
 
     el.style.backgroundColor = color;
+    el.style.color = color;
 
     return (
-      <div id="wrapper" style={{ margin: 0, padding: 10 }}>
+      <div id="wrapper" >
         <div id="quote-box">
           {quote && author && (
             <>
-              <p id="text">{quote}</p>
+              <p id="text"><FontAwesomeIcon icon={faQuoteLeft} /> {" "}
+              {quote}</p>
               <p id="author">- {author}</p>
             </>
           )}
 
           <div id="buttons">
+
+          <a
+              className="button"
+              href="https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22Fall%20seven%20times%20and%20stand%20up%20eight.%22%20Japanese%20Proverb"
+              title="Post this quote on twitter!"
+            >
             <FontAwesomeIcon
               icon={faTwitter}
               className="twitter-button"
               style={{ backgroundColor: color ?? colors[0] }}
             />
-            <FontAwesomeIcon
-              icon={faTumblr}
-              className="tumblr-button"
-              style={{ backgroundColor: color ?? colors[0] }}
-            />
+            </a>
+            <a
+              className="button"
+              href="https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=Japanese%20Proverb&content=Fall%20seven%20times%20and%20stand%20up%20eight.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button"
+              title="Post this quote on tumblr!"
+            >
+              <FontAwesomeIcon
+                icon={faTumblr}
+                className="tumblr-button"
+                style={{ backgroundColor: color ?? colors[0] }}
+              />
+            </a>
+
             <button
               id="new-quote"
               className="newQuote-button"
@@ -134,6 +133,7 @@ export default class RandomQuote extends React.Component<
 
 /**
  * 
+ * https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=Japanese%20Proverb&content=Fall%20seven%20times%20and%20stand%20up%20eight.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button
  * User Story #1: I can see a wrapper element with a corresponding id="quote-box".
 
 User Story #2: Within #quote-box, I can see an element with a corresponding id="text".
