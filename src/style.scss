@@ -1,3 +1,12 @@
+$breakpoint-sm: 768px;
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  vertical-align: baseline;
+}
+
 body {
   font-family: 'Raleway', sans-serif;
   height: 100vh;
@@ -5,46 +14,61 @@ body {
   justify-content: center;
   align-items: center;
 
-  #quote-box {
-    border-radius: 3px;
-    position: relative;
-    width: 450px;
-    padding: 40px 50px;
-    display: table;
-    background-color: #fff;
-    font-weight: 500;
-    font-size: 1.4em;
-    #text {
-      text-align: center;
-    }
+  #wrapper {
+    #quote-box {
+      border-radius: 3px;
+      position: relative;
+      //width: 450px;
+      height: auto;
+      clear: both;
+      padding: 40px 50px;
+      display: table;
+      background-color: #fff;
+      font-weight: 500;
+      font-size: 1.4em;
 
-    #author {
-      text-align: right;
-      padding-top: 10px;
-      font-weight: 300;
-      font-size: 0.7em;
-    }
+      @media (max-width: 768px) {
+        padding: 30px;
+        font-size: 0.8em;
+      }
+      #text {
+        text-align: center;
+      }
 
-    .newQuote-button {
-      border: none;
-      float: right;
-      font-size: 0.75em;
-    }
+      #author {
+        text-align: right;
+        padding-top: 10px;
+        font-weight: 300;
+        font-size: 0.8em;
+      }
+      #buttons {
+        margin-top: 30px;
+        .newQuote-button {
+          float: right;
+          height: 38px;
+          font-size: 0.85em;
+          padding: 8px 18px 6px 18px;
+        }
 
-    .twitter-button,
-    .tumblr-button {
-      width: 20px;
-      height: 20px;
-      font-size: 0.65em;
-      margin: 5px;
-    }
-    .newQuote-button,
-    .twitter-button,
-    .tumblr-button {
-      border-radius: 5px;
-      color: white;
-      padding: 10px;
-      cursor: pointer;
+        .twitter-button,
+        .tumblr-button {
+          float: left;
+          padding: 8px;
+          // padding-top: 8px;
+          text-align: center;
+          margin-right: 5px;
+          height: 20px;
+          width: 30px;
+        }
+        .newQuote-button,
+        .twitter-button,
+        .tumblr-button {
+          border: none;
+          border-radius: 5px;
+          color: white;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
