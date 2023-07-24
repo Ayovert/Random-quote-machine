@@ -31,24 +31,22 @@ export default class RandomQuote extends React.Component<
       .then((response) => response.json())
       .then((data) => {
         {
-          
           if (data !== null && data.quotes.length > 0) {
-           
-            this.setState({
-              quotes: [...data.quotes],
-            }, () =>{
-              
-              if (this.state.quotes.length > 0) {
-                this.getNewQuote();
+            this.setState(
+              {
+                quotes: [...data.quotes],
+              },
+              () => {
+                if (this.state.quotes.length > 0) {
+                  this.getNewQuote();
+                }
               }
-            });
+            );
 
             //make sure to put a callback in setState to get current state
-
-           
           }
         }
-      })
+      });
 
     // Storing data in form of JSON
   }
@@ -66,12 +64,8 @@ export default class RandomQuote extends React.Component<
   }
 
   componentDidMount() {
-
-    console.log(this.state);
-    console.log("xxxx")
     // Defining async function
     if (this.state.quotes.length < 1) {
-      console.log("yyyy")
       //this kept return empty
       this.getApi();
     } else {
